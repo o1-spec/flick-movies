@@ -18,7 +18,7 @@ import Hero from "../utilities/Hero.vue";
 import Companies from "../utilities/Companies.vue";
 import Trending from "../utilities/Trending.vue";
 import TopPicks from "../utilities/TopPicks.vue";
-import Info from "../utilities/Info.vue"
+import Info from "../utilities/Info.vue";
 import Footer from "../utilities/Footer.vue";
 export default {
   components: {
@@ -28,9 +28,9 @@ export default {
     Trending,
     TopPicks,
     Info,
-    Footer
+    Footer,
   },
+ 
 };
 </script>
 
-<style></style>

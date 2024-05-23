@@ -65,7 +65,7 @@ export default {
         if (movie.vote_average > 7.6) {
           topMovies.value.push(movie);
         }
-        console.log(topMovies.value);
+        //console.log(topMovies.value);
       });
     });
 

@@ -8,16 +8,36 @@
         <a href="">Trending</a>
         <a href="">About Us</a>
       </div>
-      <div class="nav-btn">
-        <a href="">Sign Up</a>
-        <a href="">Login</a>
+      <div class="nav-btn" v-if="!user">
+        <router-link to="/signup">Sign Up</router-link>
+        <router-link to="/login">Login</router-link>
+      </div>
+      <div v-if="user" class="user-name">
+        {{ user.displayName }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
-</script>
+import {  onBeforeUnmount, onMounted } from "vue";
+import { useMovieStore } from "../../store/UseMovieStore";
+export default {
+  setup() {
+    const store = useMovieStore();
+    console.log(store.user)
 
-<style></style>
+    onMounted(() => {
+      store.initAuthState();
+    });
+
+    onBeforeUnmount(() => {
+      store.destroy();
+    });
+
+    return {
+      user: store.user,
+    };
+  },
+};
+</script>
