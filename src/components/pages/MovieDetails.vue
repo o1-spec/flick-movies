@@ -1,7 +1,7 @@
 <template>
   <div class="movie-details">
     <movieSectionNav />
-    <div class="movie-content" >
+    <div class="movie-content">
       <div class="movie-content-description">
         <div class="movie-content-title">
           <h3>{{ movieContent?.title || movieContent?.original_name }}</h3>
@@ -33,7 +33,20 @@
             {{ movieContent?.overview }}
           </div>
           <div>
-            <button class="watchlist">Add to watch list</button>
+            <button
+              v-if="!storeWatchList"
+              @click="addToWatchlist(movieContent)"
+              class="watchlist"
+            >
+              Add to Watchlist
+            </button>
+            <button
+              v-else
+              @click="removeFromWatchlist(movieContent?.id)"
+              class="watchlist"
+            >
+              Remove from Watchlist
+            </button>
           </div>
         </div>
         <img
@@ -52,7 +65,7 @@
 </template>
 
 <script>
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted, watch, computed } from "vue";
 import { useRoute } from "vue-router";
 import { useMovieStore } from "../../store/UseMovieStore";
 import { storeToRefs } from "pinia";
@@ -67,14 +80,24 @@ export default {
   setup() {
     const route = useRoute();
     const store = useMovieStore();
-    const { movies, loading } = storeToRefs(store);
+    const { movies, loading, watchlist } = storeToRefs(store);
     const movieContent = ref(null);
     const movieId = Number(route.params.id);
-    console.log(movieId)
+
+    console.log(watchlist);
+    const storeWatchList = computed(() => store.isInWatchlist(movieId));
+
+    const addToWatchlist = (movie) => {
+      store.addToWatchlist(movie);
+      console.log(store.watchlist);
+    };
+
+    const removeFromWatchlist = (movieId) => {
+      store.removeFromWatchlist(movieId);
+    };
 
     onMounted(async () => {
-      //await store.fetchMovies();
-      console.log(movies.value)
+      console.log(movies.value);
       const movie = movies.value.find((movie) => movie.id === movieId);
       movieContent.value = movie || null;
     });
@@ -87,6 +110,9 @@ export default {
     return {
       movieContent,
       getMoviePoster: store.getMoviePoster,
+      storeWatchList,
+      addToWatchlist,
+      removeFromWatchlist,
     };
   },
 };
@@ -104,7 +130,7 @@ export default {
   background-attachment: fixed;
 }
 
-.movie-content{
+.movie-content {
   height: 96vw;
 }
 
@@ -115,7 +141,7 @@ export default {
 }
 
 .movie-content-info img {
-  width: 100%; 
+  width: 100%;
   height: 20rem;
   object-fit: cover;
 }

@@ -16,8 +16,13 @@ export const useMovieStore = defineStore("getMovies", {
     user: null,
     authIsReady: false,
     unsubscribeAuthState: null,
+    watchlist: JSON.parse(localStorage.getItem("watchlist")) || [],
   }),
-  getters: {},
+  getters: {
+    isInWatchlist: (state) => (movieId) => {
+      return state.watchlist.some((movie) => movie.id === movieId);
+    },
+  },
   actions: {
     async fetchMovies() {
       try {
@@ -137,6 +142,19 @@ export const useMovieStore = defineStore("getMovies", {
       if (this.unsubscribeAuthState) {
         this.unsubscribeAuthState();
       }
+    },
+    saveWatchlist() {
+      localStorage.setItem("watchlist", JSON.stringify(this.watchlist));
+    },
+    addToWatchlist(movie) {
+      if (!this.watchlist.some((m) => m.id === movie.id)) {
+        this.watchlist.push(movie);
+        this.saveWatchlist();
+      }
+    },
+    removeFromWatchlist(movieId) {
+      this.watchlist = this.watchlist.filter((movie) => movie.id !== movieId);
+      this.saveWatchlist();
     },
   },
 });

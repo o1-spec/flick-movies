@@ -20,6 +20,19 @@
         <div class="user-name" v-if="user">
           {{ user.displayName }}
         </div>
+        <div
+          @mouseenter="showWaitlist"
+          @mouseleave="hideWaitlist"
+          class="waitlist-icon"
+        >
+          <div>
+            <i class="fa fa-list" aria-hidden="true"></i>
+            <span class="watch-list-length">{{watchlist.length}}</span>
+          </div>
+          <router-link to="/waitlist" class="waitlist-link"
+            >Waitlist</router-link
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -28,11 +41,13 @@
 <script>
 import { ref, computed } from "vue";
 import { useMovieStore } from "../../store/UseMovieStore";
+import { storeToRefs } from "pinia";
 export default {
   setup() {
     const store = useMovieStore();
     const user = computed(() => store.user);
     const searchValue = ref("");
+    const { watchlist } = storeToRefs(store);
 
     const handleSearch = () => {
       if (!searchValue.value) return;
@@ -40,11 +55,24 @@ export default {
       store.fetchSearch(searchValue.value);
     };
 
+    const showWaitlist = () => {
+      const waitlistLink = document.querySelector(".waitlist-link");
+      waitlistLink.style.visibility = "visible";
+    };
+
+    const hideWaitlist = () => {
+      const waitlistLink = document.querySelector(".waitlist-link");
+      waitlistLink.style.visibility = "hidden";
+    };
+
     return {
       user,
       searchValue,
       store,
       handleSearch,
+      watchlist,
+      showWaitlist,
+      hideWaitlist,
     };
   },
 };
@@ -55,6 +83,10 @@ export default {
   display: flex;
   align-items: center;
   gap: 2rem;
+}
+
+.watch-list-length{
+  padding-left: 0.7rem;
 }
 
 .back {
@@ -70,5 +102,27 @@ export default {
   border-radius: 5px;
   margin-left: 2rem;
   cursor: pointer;
+}
+.waitlist-icon {
+  color: #fff;
+  font-size: 1.9rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+}
+
+.waitlist-icon a {
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 1.65rem;
+}
+
+.waitlist-icon:hover .waitlist-link {
+  visibility: visible;
 }
 </style>
