@@ -33,6 +33,7 @@ export const useMovieStore = defineStore("getMovies", {
         if (data.Response === "false") throw new Error("Movies not found ");
 
         this.movies = data.results;
+        console.log;
       } catch (error) {
         console.log(error.message);
       } finally {
@@ -53,10 +54,10 @@ export const useMovieStore = defineStore("getMovies", {
         if (data.results.length === 0)
           throw new Error("No movies found for the search query");
         this.movies = data.results;
-        //console.log(data.results);
-        //console.log(this.movies);
+        console.log(data.results);
+        console.log(this.movies);
       } catch (err) {
-        setError(err.message);
+        console.log(err.message);
       } finally {
         this.loading = false;
       }

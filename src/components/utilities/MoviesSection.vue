@@ -6,8 +6,8 @@
           :src="moviestore.getMoviePoster(movie.poster_path)"
           :alt="movie.title"
         />
-        <div class="movie-box-info">
-          <h6>{{ movie.title || movie.name }}</h6>
+        <div class="movie-box-info" @click="navigateToMovieDetails(movie.id)">
+          <h6>{{ movie.title || movie.name || movie.original_title }}</h6>
           <span>{{ movie.media_type }}</span>
           <span>{{
             !movie.release_date ? movie.first_air_date : movie.release_date
@@ -22,9 +22,11 @@
 import { onMounted, ref, watch } from "vue";
 import { useMovieStore } from "../../store/UseMovieStore";
 import { storeToRefs } from "pinia";
+import { useRouter } from "vue-router";
 export default {
   setup() {
     const moviestore = useMovieStore();
+    const router = useRouter();
     const { movies, loading } = storeToRefs(moviestore);
     const moviesCollection = ref([]);
 
@@ -38,11 +40,16 @@ export default {
       //console.log(moviesCollection.value);
     });
 
+    const navigateToMovieDetails = (movieId) => {
+      router.push({ name: "Movie", params: { id: movieId } });
+    };
+
     return {
       movies,
       moviesCollection,
       moviestore,
       loading,
+      navigateToMovieDetails
     };
   },
 };
@@ -86,11 +93,12 @@ export default {
   flex-direction: column;
   gap: 0.1rem;
   position: absolute;
-  bottom:6%;
+  bottom: 6%;
   width: 80%;
   border-radius: 3rem;
   background-color: #000;
   opacity: 0.8;
+  cursor: pointer;
   padding: 1.5rem;
   margin-bottom: 2rem;
   margin-left: 2rem;

@@ -29,7 +29,7 @@
 
 <script>
 import { useMovieStore } from "../../store/UseMovieStore";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 export default {
   setup() {
     const Action = 28;
@@ -57,6 +57,12 @@ export default {
     const moviesCollection = ref([]);
     const { fetchGenres } = useMovieStore();
 
+    onMounted(() => {
+      function handleGenres(cate) {
+        fetchGenres(cate);
+      }
+    });
+
     return {
       Action,
       Adventure,
@@ -80,7 +86,7 @@ export default {
       Thriller,
       War,
       Western,
-      fetchGenres,
+      handleGenres,
     };
   },
 };
