@@ -20,23 +20,15 @@
 </template>
 
 <script>
-import {  onBeforeUnmount, onMounted } from "vue";
+import { computed } from 'vue';
 import { useMovieStore } from "../../store/UseMovieStore";
 export default {
   setup() {
     const store = useMovieStore();
-    console.log(store.user)
-
-    onMounted(() => {
-      store.initAuthState();
-    });
-
-    onBeforeUnmount(() => {
-      store.destroy();
-    });
+    const user = computed(() => store.user);
 
     return {
-      user: store.user,
+      user,
     };
   },
 };

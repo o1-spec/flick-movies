@@ -13,9 +13,7 @@ export const useMovieStore = defineStore("getMovies", {
   state: () => ({
     movies: [],
     loading: false,
-    user: localStorage.getItem("user")
-      ? JSON.parse(localStorage.getItem("user"))
-      : null,
+    user: null,
     authIsReady: false,
     unsubscribeAuthState: null,
   }),
@@ -41,6 +39,47 @@ export const useMovieStore = defineStore("getMovies", {
         this.loading = false;
       }
     },
+    async fetchGenres(genreId) {
+      try {
+        this.loading = true;
+
+        const res = await fetch(
+          `https://api.themoviedb.org/3/discover/movie?api_key=${KEY}&with_genres=${genreId}`
+        );
+        if (!res.ok)
+          throw new Error("Something went wrong with fetching movies");
+        const data = await res.json();
+        if (data.Response === "false") throw new Error("Movies not found ");
+        if (data.results.length === 0)
+          throw new Error("No movies found for the search query");
+        this.movies = data.results;
+        //console.log(data.results);
+        //console.log(this.movies);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        this.loading = false;
+      }
+    },
+    async fetchSearch(name) {
+      try {
+        this.loading = true;
+
+        const res = await fetch(
+          `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${name}`
+        );
+        if (!res.ok)
+          throw new Error("Something went wrong with fetching movies");
+        const data = await res.json();
+        if (data.Response === "false") throw new Error("Movies not found ");
+        this.movies = data.results;
+        console.log(data.results);
+      } catch (err) {
+        console.log(err.message);
+      } finally {
+        this.loading = false;
+      }
+    },
     getMoviePoster(posterpath) {
       return `https://media.themoviedb.org/t/p/w440_and_h660_face${posterpath}`;
     },
@@ -48,7 +87,6 @@ export const useMovieStore = defineStore("getMovies", {
       try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
         if (res) {
-          localStorage.setItem("user", JSON.stringify(res.user));
           this.user = res.user;
         } else {
           throw new Error("Could not complete login");
@@ -61,7 +99,6 @@ export const useMovieStore = defineStore("getMovies", {
       try {
         const res = await signInWithEmailAndPassword(auth, email, password);
         if (res) {
-          localStorage.setItem("user", JSON.stringify(res.user));
           this.user = res.user;
           console.log("login action");
         } else {
@@ -74,7 +111,6 @@ export const useMovieStore = defineStore("getMovies", {
     async logout() {
       try {
         await signOut(auth);
-        localStorage.removeItem("user");
         this.user = null;
       } catch (error) {
         console.error(error.message);

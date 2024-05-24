@@ -7,14 +7,24 @@
           The seek is done! Let trackmovies assist you in locating a perfect
           free movie to watch this evening
         </p>
-        <a href="">Explore Now</a>
+        <router-link v-if="user" to="/movies">Explore Now</router-link>
+        <router-link v-else to="/login">Explore Now</router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
-</script>
+import { computed } from "vue";
+import { useMovieStore } from "../../store/UseMovieStore";
+export default {
+  setup() {
+    const store = useMovieStore();
+    const user = computed(() => store.user);
 
-<style></style>
+    return {
+      user,
+    };
+  },
+};
+</script>
