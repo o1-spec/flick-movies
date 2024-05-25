@@ -1,7 +1,9 @@
 <template>
   <div class="movies-section">
     <div class="movie-container">
-      <div v-if="loading">loading</div>
+      <div v-if="loading">
+        <Spinner />
+      </div>
       <div class="movie-box" v-for="movie in movies" :key="movie.id">
         <img
           :src="moviestore.getMoviePoster(movie.poster_path)"
@@ -24,7 +26,11 @@ import { onMounted, ref, watch } from "vue";
 import { useMovieStore } from "../../store/UseMovieStore";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
+import Spinner from "./Spinner.vue";
 export default {
+  components: {
+    Spinner,
+  },
   setup() {
     const moviestore = useMovieStore();
     const router = useRouter();

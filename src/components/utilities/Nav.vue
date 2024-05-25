@@ -16,7 +16,7 @@
         {{ user.displayName }}
       </div>
     </div>
-  </div>
+  </div> 
 </template>
 
 <script>

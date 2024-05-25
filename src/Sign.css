@@ -458,21 +458,23 @@ form {
 .waitlist-content {
   color: #fff;
   border: 1px solid #fff;
-  width: 45rem;
+  width: 76rem;
   margin: 0 auto;
-  padding: 1.7rem;
+  padding: 3rem 2.8rem;
+  border-radius: 5px;
 }
 
 .waitlist img {
-  width: 10rem;
-  height: 15rem;
+  width: 14rem;
+  height: 20rem;
   object-fit: cover;
 }
 
 .watchlist-info {
   display: flex;
-  justify-content: space-between;
+  gap: 3rem;
   padding-bottom: 2rem;
+  position: relative;
 }
 
 .watchlist-name p {

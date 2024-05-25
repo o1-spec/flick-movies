@@ -2,6 +2,9 @@
   <div class="movie-details">
     <movieSectionNav />
     <div class="movie-content">
+      <div v-if="loading">
+        <Spinner />
+      </div>
       <div class="movie-content-description">
         <div class="movie-content-title">
           <h3>{{ movieContent?.title || movieContent?.original_name }}</h3>
@@ -71,10 +74,12 @@ import { useMovieStore } from "../../store/UseMovieStore";
 import { storeToRefs } from "pinia";
 import movieSectionNav from "../utilities/movieSectionNav.vue";
 import Footer from "../utilities/Footer.vue";
+import Spinner from "../utilities/Spinner.vue";
 
 export default {
   components: {
     movieSectionNav,
+    Spinner,
     Footer,
   },
   setup() {
@@ -113,6 +118,7 @@ export default {
       storeWatchList,
       addToWatchlist,
       removeFromWatchlist,
+      loading,
     };
   },
 };
