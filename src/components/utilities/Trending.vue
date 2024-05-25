@@ -13,6 +13,7 @@
         class="trending-movie"
         v-for="movie in moviesCollection"
         :key="movie.id"
+        @click="navigateToMovieDetails(movie.id)"
       >
         <img
           :src="moviestore.getMoviePoster(movie.poster_path)"
@@ -63,6 +64,7 @@
 import { storeToRefs } from "pinia";
 import { useMovieStore } from "../../store/UseMovieStore";
 import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
@@ -71,12 +73,17 @@ export default {
     const moviesCollection = ref([]);
     const trendingRef = ref(null);
     let clickTimeout = null;
+    const router = useRouter();
 
     onMounted(async () => {
       await moviestore.fetchMovies();
       moviesCollection.value = movies.value;
       //console.log(moviesCollection.value);
     });
+
+    const navigateToMovieDetails = (movieId) => {
+      router.push({ name: "Movie", params: { id: movieId } });
+    };
 
     const scrollLeft = (skipFour = false) => {
       if (trendingRef.value) {
@@ -127,6 +134,7 @@ export default {
       trendingRef,
       handleClick,
       handleDoubleClick,
+      navigateToMovieDetails,
     };
   },
 };

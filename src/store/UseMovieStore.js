@@ -91,6 +91,7 @@ export const useMovieStore = defineStore("getMovies", {
     },
     async signup(email, password) {
       try {
+        this.loading = true;
         const res = await createUserWithEmailAndPassword(auth, email, password);
         if (res) {
           this.user = res.user;
@@ -99,10 +100,13 @@ export const useMovieStore = defineStore("getMovies", {
         }
       } catch (error) {
         console.log(error.message);
+      } finally {
+        this.loading = false;
       }
     },
     async login(email, password) {
       try {
+        this.loading = true;
         const res = await signInWithEmailAndPassword(auth, email, password);
         if (res) {
           this.user = res.user;
@@ -112,14 +116,19 @@ export const useMovieStore = defineStore("getMovies", {
         }
       } catch (error) {
         console.error(error.message);
+      } finally {
+        this.loading = false;
       }
     },
     async logout() {
       try {
+        this.loading = true;
         await signOut(auth);
         this.user = null;
       } catch (error) {
         console.error(error.message);
+      } finally {
+        this.loading = false;
       }
     },
     async initAuthState() {

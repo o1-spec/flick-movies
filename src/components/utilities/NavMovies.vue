@@ -79,50 +79,5 @@ export default {
 </script>
 
 <style scoped>
-.nav-movies-back {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
 
-.watch-list-length{
-  padding-left: 0.7rem;
-}
-
-.back {
-  margin-right: 1rem;
-}
-
-.search-btn {
-  background: #000;
-  color: #fff;
-  font-size: 1.3rem;
-  padding: 1rem;
-  border: 1px solid #fff;
-  border-radius: 5px;
-  margin-left: 2rem;
-  cursor: pointer;
-}
-.waitlist-icon {
-  color: #fff;
-  font-size: 1.9rem;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  cursor: pointer;
-}
-
-.waitlist-icon a {
-  visibility: hidden;
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #fff;
-  font-size: 1.65rem;
-}
-
-.waitlist-icon:hover .waitlist-link {
-  visibility: visible;
-}
 </style>

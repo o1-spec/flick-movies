@@ -196,6 +196,7 @@ body {
 
 .trending-movie {
   position: relative;
+  cursor: pointer;
 }
 
 .trending-movie img {
@@ -213,6 +214,7 @@ body {
 
 .trending-info h6 {
   font-size: 1.45rem;
+  text-decoration: underline;
 }
 
 .trending-ratings {
@@ -279,10 +281,12 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
+  cursor: pointer;
 }
 
 .top-pick-info h6 {
   font-size: 1.45rem;
+  text-decoration: underline;
 }
 
 .trending-ratings {

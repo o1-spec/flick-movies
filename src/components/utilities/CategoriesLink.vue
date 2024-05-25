@@ -87,26 +87,5 @@ export default {
 </script>
 
 <style>
-.section-categories {
-  padding: 4rem 8rem;
-  border-bottom: 2px solid #fff;
-}
 
-.cate-links {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 3rem;
-}
-
-.section-categories a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.4rem;
-  transition: all 0.5s;
-}
-
-.section-categories a:hover {
-  color: #f03e3e;
-}
 </style>

@@ -56,52 +56,5 @@ export default {
 </script>
 
 <style>
-.direct {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
 
-.watch-list-length {
-  padding-left: 0.7rem;
-}
-
-.movie-section-nav {
-  padding: 3rem 8rem;
-  border-bottom: 2px solid #fff;
-}
-
-.icons-contact {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-}
-
-.icons-contact i {
-  color: #fff;
-  font-size: 1.6rem;
-}
-
-.waitlist-icon {
-  color: #fff;
-  font-size: 1.9rem;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  cursor: pointer;
-}
-
-.waitlist-icon a {
-  visibility: hidden;
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #fff;
-  font-size: 1.65rem;
-}
-
-.waitlist-icon:hover .waitlist-link {
-  visibility: visible;
-}
 </style>

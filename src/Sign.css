@@ -105,7 +105,7 @@ form {
   font-size: 2.7rem;
 }
 
-.search input{
+.search input {
   background-color: #000;
   color: #fff;
   font-size: 1.3rem;
@@ -114,4 +114,367 @@ form {
   outline: 1px solid #fff;
   margin-top: 1rem;
   border: none;
+}
+
+/************** MOVIE COLLECTION *********/
+.section-movies {
+  background-image: linear-gradient(to right, black 50%, transparent 100%),
+    url("../Images/bg2.webp");
+  background-size: auto 100%;
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-attachment: fixed;
+}
+
+.section-categories {
+  padding: 4rem 8rem;
+  border-bottom: 2px solid #fff;
+}
+
+.cate-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.section-categories a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.4rem;
+  transition: all 0.5s;
+}
+
+.section-categories a:hover {
+  color: #f03e3e;
+}
+
+/************ MOVIE DETAILS ***********/
+.nav-movies-back {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.watch-list-length {
+  padding-left: 0.7rem;
+}
+
+.back {
+  margin-right: 1rem;
+}
+
+.search-btn {
+  background: #000;
+  color: #fff;
+  font-size: 1.3rem;
+  padding: 1rem;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  margin-left: 2rem;
+  cursor: pointer;
+}
+.waitlist-icon {
+  color: #fff;
+  font-size: 1.9rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+}
+
+.waitlist-icon a {
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 1.65rem;
+}
+
+.waitlist-icon:hover .waitlist-link {
+  visibility: visible;
+}
+
+.movie-details {
+  background-image: linear-gradient(to right, black 50%, transparent 100%),
+    url("../Images/bg2.webp");
+  background-size: auto 100%;
+  background-color: #000;
+  color: #fff;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-attachment: fixed;
+}
+
+.movie-content {
+  height: 96vw;
+}
+
+.movie-content-description {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 6rem 1rem;
+}
+
+.movie-content-info img {
+  width: 100%;
+  height: 20rem;
+  object-fit: cover;
+}
+
+.movie-content-title {
+  color: #fff;
+}
+
+.movie-content-title h3 {
+  font-size: 3.3rem;
+  text-align: center;
+  padding-bottom: 3rem;
+}
+
+.movie-content-title img {
+  width: 80rem;
+  height: 40rem;
+  object-fit: cover;
+}
+
+.movie-content-description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.movie-info-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 1.7rem;
+}
+
+.movie-content-info {
+  border: 1px solid #fff;
+}
+
+.movie-time {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6rem;
+}
+
+.movie-time span:nth-child(1) {
+  font-size: 2rem;
+}
+
+.movie-info-content {
+  font-size: 1.65rem;
+  padding: 2rem 1.7rem;
+
+  letter-spacing: 0.1px;
+}
+
+.movie-lang {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.movie-lang span:nth-child(2) {
+  font-size: 1.4rem;
+}
+
+.movie-lang span:nth-child(1) {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.backdrop_path {
+  width: 30rem;
+  border: 1px solid #fff;
+  margin: 4rem 0rem;
+}
+
+.watchlist {
+  color: #fff;
+  margin: 1.5rem;
+  outline: none;
+  border: 1px solid #fff;
+  border-radius: 7px;
+  background-color: #f03e3e;
+  font-size: 1.45rem;
+  cursor: pointer;
+  padding: 1.2rem 1.7rem;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.image-wrapper {
+  position: relative;
+}
+
+.direct {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.watch-list-length {
+  padding-left: 0.7rem;
+}
+
+.movie-section-nav {
+  padding: 3rem 8rem;
+  border-bottom: 2px solid #fff;
+}
+
+.icons-contact {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.icons-contact i {
+  color: #fff;
+  font-size: 1.6rem;
+}
+
+.waitlist-icon {
+  color: #fff;
+  font-size: 1.9rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+}
+
+.waitlist-icon a {
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 1.65rem;
+}
+
+.waitlist-icon:hover .waitlist-link {
+  visibility: visible;
+}
+
+/**************** MOVIELIST CSS ******************/
+.movie-list {
+  background-image: url("../public/images/bg2.webp");
+  width: 100vw;
+  position: relative;
+  background-attachment: fixed;
+  height: 100%;
+  padding: 3rem 5rem;
+}
+
+.movie-container {
+  padding: 8rem;
+}
+
+.movie-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 3.5rem;
+  row-gap: 6rem;
+}
+
+.movie-box {
+  position: relative;
+}
+
+.movie-box img {
+  width: 100%;
+  height: 94%;
+  border: 1px solid #fff;
+  margin-bottom: 1rem;
+}
+
+.movie-box-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  position: absolute;
+  bottom: 6%;
+  width: 80%;
+  border-radius: 3rem;
+  background-color: #000;
+  opacity: 0.8;
+  cursor: pointer;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+}
+
+.movie-box a {
+  text-decoration: none;
+}
+
+.movie-box-info h6 {
+  color: #fff;
+  font-size: 1.4rem;
+}
+
+.movie-box-info span {
+  color: #fff;
+}
+
+/************ WAITLIST *************/
+.section-waitlist {
+  background-image: linear-gradient(to right, black 50%, transparent 100%),
+    url("../Images/bg-image.jpeg");
+  background-size: auto 100%;
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.waitlist {
+  padding: 4rem 1rem 7rem 1rem;
+}
+
+.waitlist h3 {
+  color: #fff;
+  font-size: 3rem;
+  text-align: center;
+  padding-bottom: 3rem;
+}
+
+.waitlist-content {
+  color: #fff;
+  border: 1px solid #fff;
+  width: 45rem;
+  margin: 0 auto;
+  padding: 1.7rem;
+}
+
+.waitlist img {
+  width: 10rem;
+  height: 15rem;
+  object-fit: cover;
+}
+
+.watchlist-info {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 2rem;
+}
+
+.watchlist-name p {
+  font-size: 1.4rem;
 }

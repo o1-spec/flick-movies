@@ -46,47 +46,5 @@ export default {
 </script>
 
 <style>
-.section-waitlist {
-  background-image: linear-gradient(to right, black 50%, transparent 100%),
-    url("../Images/bg-image.jpeg");
-  background-size: auto 100%;
-  background-color: #000;
-  background-repeat: no-repeat;
-  background-position: right center;
-}
 
-.waitlist {
-  padding: 4rem 1rem 7rem 1rem;
-}
-
-.waitlist h3 {
-  color: #fff;
-  font-size: 3rem;
-  text-align: center;
-  padding-bottom: 3rem;
-}
-
-.waitlist-content {
-  color: #fff;
-  border: 1px solid #fff;
-  width: 45rem;
-  margin: 0 auto;
-  padding: 1.7rem;
-}
-
-.waitlist img {
-  width: 10rem;
-  height: 15rem;
-  object-fit: cover;
-}
-
-.watchlist-info {
-  display: flex;
- justify-content: space-between;
- padding-bottom: 2rem;
-}
-
-.watchlist-name p{
-  font-size: 1.4rem;
-}
 </style>

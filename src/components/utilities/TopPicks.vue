@@ -7,7 +7,7 @@
           :src="moviestore.getMoviePoster(movie.poster_path)"
           :alt="movie.title"
         />
-        <div class="top-pick-info">
+        <div class="top-pick-info" @click="navigateToMovieDetails(movie.id)">
           <h6>
             {{ movie.title || movie.name }}
           </h6>
@@ -41,7 +41,6 @@
           <i class="fa-solid fa-star"></i>
         </div>
       </div>
-     
     </div>
   </div>
 </template>
@@ -50,13 +49,14 @@
 import { storeToRefs } from "pinia";
 import { useMovieStore } from "../../store/UseMovieStore";
 import { onMounted, ref } from "vue";
-
+import { useRouter } from "vue-router";
 export default {
   setup() {
     const moviestore = useMovieStore();
     const { movies, loading } = storeToRefs(moviestore);
     let moviesCollection = ref([]);
     let topMovies = ref([]);
+    const router = useRouter();
 
     onMounted(async () => {
       await moviestore.fetchMovies();
@@ -69,11 +69,16 @@ export default {
       });
     });
 
+    const navigateToMovieDetails = (movieId) => {
+      router.push({ name: "Movie", params: { id: movieId } });
+    };
+
     return {
       moviesCollection,
       loading,
       moviestore,
       topMovies,
+      navigateToMovieDetails,
     };
   },
 };

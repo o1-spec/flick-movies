@@ -1,6 +1,7 @@
 <template>
   <div class="movies-section">
     <div class="movie-container">
+      <div v-if="loading">loading</div>
       <div class="movie-box" v-for="movie in movies" :key="movie.id">
         <img
           :src="moviestore.getMoviePoster(movie.poster_path)"
@@ -49,71 +50,10 @@ export default {
       moviesCollection,
       moviestore,
       loading,
-      navigateToMovieDetails
+      navigateToMovieDetails,
     };
   },
 };
 </script>
 
-<style>
-/**************** MOVIELIST CSS ******************/
-.movie-list {
-  background-image: url("../public/images/bg2.webp");
-  width: 100vw;
-  position: relative;
-  background-attachment: fixed;
-  height: 100%;
-  padding: 3rem 5rem;
-}
-
-.movie-container {
-  padding: 8rem;
-}
-
-.movie-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  column-gap: 3.5rem;
-  row-gap: 6rem;
-}
-
-.movie-box {
-  position: relative;
-}
-
-.movie-box img {
-  width: 100%;
-  height: 94%;
-  border: 1px solid #fff;
-  margin-bottom: 1rem;
-}
-
-.movie-box-info {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-  position: absolute;
-  bottom: 6%;
-  width: 80%;
-  border-radius: 3rem;
-  background-color: #000;
-  opacity: 0.8;
-  cursor: pointer;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  margin-left: 2rem;
-}
-
-.movie-box a {
-  text-decoration: none;
-}
-
-.movie-box-info h6 {
-  color: #fff;
-  font-size: 1.4rem;
-}
-
-.movie-box-info span {
-  color: #fff;
-}
-</style>
+<style></style>
