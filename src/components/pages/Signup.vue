@@ -17,7 +17,8 @@ import Footer from "../utilities/Footer.vue";
 import SignInNav from "../utilities/SignInNav.vue";
 import { useMovieStore } from "../../store/UseMovieStore";
 import { storeToRefs } from "pinia";
-import Spinner from '../utilities/Spinner.vue';
+import Spinner from "../utilities/Spinner.vue";
+import { onMounted } from "vue";
 export default {
   components: {
     SignupForm,
@@ -28,6 +29,10 @@ export default {
   setup() {
     const store = useMovieStore();
     const { loading } = storeToRefs(store);
+
+    onMounted(() => {
+      window.scrollTo(0, 0);
+    });
 
     return {
       loading,

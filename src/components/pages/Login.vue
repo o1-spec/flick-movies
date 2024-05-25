@@ -17,6 +17,7 @@ import Footer from "../utilities/Footer.vue";
 import SignInNav from "../utilities/SignInNav.vue";
 import { storeToRefs } from "pinia";
 import { useMovieStore } from "../../store/UseMovieStore";
+import { onMounted } from 'vue';
 export default {
   components: {
     LoginForm,
@@ -26,6 +27,10 @@ export default {
   setup() {
     const store = useMovieStore();
     const { loading } = storeToRefs(store);
+
+    onMounted(() => {
+      window.scrollTo(0, 0);
+    });
 
     return {
       loading,

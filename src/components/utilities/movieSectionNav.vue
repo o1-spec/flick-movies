@@ -1,8 +1,14 @@
 <template>
   <div class="sign-in-nav movie-section-nav">
     <h3>Flick-Movies</h3>
-    <div class="user-name" v-if="user">
-      {{ user.displayName }}
+    <div v-if="user" class="user-name-box">
+      <span class="user-name">
+        {{ user.displayName }}
+      </span>
+      <div class="signout-emoji">
+        <i @click="logout" class="fas fa-sign-out-alt"></i>
+        <span class="logout-text">Logout</span>
+      </div>
     </div>
     <div class="direct">
       <div
@@ -34,7 +40,7 @@ export default {
   setup() {
     const store = useMovieStore();
     const user = computed(() => store.user);
-    const { watchlist } = storeToRefs(store);
+    const { watchlist} = storeToRefs(store);
 
     const showWaitlist = () => {
       const waitlistLink = document.querySelector(".waitlist-link");
@@ -50,11 +56,10 @@ export default {
       showWaitlist,
       hideWaitlist,
       watchlist,
+      logout: store.logout,
     };
   },
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

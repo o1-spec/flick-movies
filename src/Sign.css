@@ -81,6 +81,37 @@ form {
   font-family: "Butterfly Kids", cursive;
 }
 
+.signout-emoji {
+  color: #fff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.signout-emoji i {
+  font-size: 1.6rem;
+  transform: translateY(2px);
+  cursor: pointer;
+}
+
+.user-name-box {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.logout-text {
+  display: none;
+  position: absolute;
+  transform: translate(-1.6rem,2.2rem);
+}
+
+.signout-emoji:hover .logout-text{
+  display: block;
+  font-size: 1.2rem;
+}
+
 /******** SIGN IN NAV *********/
 .sign-in-nav {
   display: flex;

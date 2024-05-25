@@ -50,6 +50,7 @@ import { storeToRefs } from "pinia";
 import Footer from "../utilities/Footer.vue";
 import movieSectionNav from "../utilities/movieSectionNav.vue";
 import { useMovieStore } from "../../store/UseMovieStore";
+import { onMounted } from 'vue';
 export default {
   components: {
     movieSectionNav,
@@ -65,6 +66,10 @@ export default {
       store.removeFromWatchlist(movieId);
     };
 
+    onMounted(() => {
+      window.scrollTo(0, 0);
+    });
+
     return {
       watchlist,
       getMoviePoster: store.getMoviePoster,
@@ -79,7 +84,7 @@ export default {
   font-size: 1.5rem;
 }
 
-.watchlist-info-content{
+.watchlist-info-content {
   padding-top: 1rem;
 }
 

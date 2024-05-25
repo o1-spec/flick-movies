@@ -22,15 +22,18 @@
 <script>
 import { ref } from "vue";
 import { useMovieStore } from "../../store/UseMovieStore";
+import { useRouter } from "vue-router";
 export default {
   setup() {
     const store = useMovieStore();
+    const router = useRouter();
     const email = ref("");
     const password = ref("");
 
     const handleSubmit = async () => {
       try {
         await store.login(email.value, password.value);
+        router.push("/movies");
       } catch (err) {
         console.log(err.message);
       } finally {

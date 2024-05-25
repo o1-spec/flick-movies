@@ -105,6 +105,7 @@ export default {
       console.log(movies.value);
       const movie = movies.value.find((movie) => movie.id === movieId);
       movieContent.value = movie || null;
+      window.scrollTo(0, 0);
     });
 
     watch(movieContent, (newVal) => {

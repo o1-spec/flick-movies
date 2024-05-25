@@ -31,18 +31,21 @@
 import { ref } from "vue";
 import { useMovieStore } from "../../store/UseMovieStore";
 import { getAuth, updateProfile } from "firebase/auth";
+import { useRouter } from 'vue-router';
 export default {
   setup() {
     const store = useMovieStore();
     const email = ref("");
     const password = ref("");
     const username = ref("");
+    const router= useRouter()
 
     const handleSubmit = async () => {
       try {
         await store.signup(email.value, password.value);
         await updateProfile(store.user, { displayName: username.value });
-        console.log(store.user.displayName);
+        router.push("/movies"); 
+        //console.log(store.user.displayName);
       } catch (err) {
         console.log(err.message);
       } finally{

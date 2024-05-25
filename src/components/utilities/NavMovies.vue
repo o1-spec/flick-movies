@@ -17,8 +17,14 @@
           <i class="fa fa-arrow-left" aria-hidden="true"></i>
           <span> Back </span>
         </div>-->
-        <div class="user-name" v-if="user">
-          {{ user.displayName }}
+        <div v-if="user" class="user-name-box">
+          <div class="user-name">
+            {{ user.displayName }}
+          </div>
+          <div class="signout-emoji">
+            <i @click="logout()" class="fas fa-sign-out-alt"></i>
+            <span class="logout-text">Logout</span>
+          </div>
         </div>
         <div
           @mouseenter="showWaitlist"
@@ -27,7 +33,7 @@
         >
           <div>
             <i class="fa fa-list" aria-hidden="true"></i>
-            <span class="watch-list-length">{{watchlist.length}}</span>
+            <span class="watch-list-length">{{ watchlist.length }}</span>
           </div>
           <router-link to="/waitlist" class="waitlist-link"
             >Waitlist</router-link
@@ -42,8 +48,10 @@
 import { ref, computed } from "vue";
 import { useMovieStore } from "../../store/UseMovieStore";
 import { storeToRefs } from "pinia";
+import { useRouter } from 'vue-router';
 export default {
   setup() {
+    const router =useRouter()
     const store = useMovieStore();
     const user = computed(() => store.user);
     const searchValue = ref("");
@@ -54,6 +62,11 @@ export default {
 
       store.fetchSearch(searchValue.value);
     };
+
+    const handleLogout = () => {
+      store.logout()
+      router.push('/login')
+    }
 
     const showWaitlist = () => {
       const waitlistLink = document.querySelector(".waitlist-link");
@@ -72,12 +85,11 @@ export default {
       handleSearch,
       watchlist,
       showWaitlist,
+      logout: store.logout,
       hideWaitlist,
     };
   },
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
