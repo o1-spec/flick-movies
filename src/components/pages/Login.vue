@@ -17,12 +17,14 @@ import Footer from "../utilities/Footer.vue";
 import SignInNav from "../utilities/SignInNav.vue";
 import { storeToRefs } from "pinia";
 import { useMovieStore } from "../../store/UseMovieStore";
-import { onMounted } from 'vue';
+import { onMounted } from "vue";
+import Spinner from "../utilities/Spinner.vue";
 export default {
   components: {
     LoginForm,
     Footer,
     SignInNav,
+    Spinner,
   },
   setup() {
     const store = useMovieStore();

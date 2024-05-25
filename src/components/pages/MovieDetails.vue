@@ -95,10 +95,12 @@ export default {
     const addToWatchlist = (movie) => {
       store.addToWatchlist(movie);
       console.log(store.watchlist);
+      window.scrollTo(0, 0);
     };
 
     const removeFromWatchlist = (movieId) => {
       store.removeFromWatchlist(movieId);
+      window.scrollTo(0, 0);
     };
 
     onMounted(async () => {

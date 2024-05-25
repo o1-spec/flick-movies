@@ -4,7 +4,7 @@
     <div class="waitlist">
       <h3>Watchlist</h3>
       <div class="waitlist-content">
-        <div v-if="watchlist">
+        <div v-if="watchlist.length > 0">
           <div class="watchlist-info" v-for="list in watchlist" :key="list.id">
             <img
               :src="getMoviePoster(list?.poster_path)"
@@ -39,6 +39,10 @@
             </div>
           </div>
         </div>
+        <div class="no-watchlist" v-else>
+          <span> You have not added any movie to waitlist </span>
+          <router-link to="/movies">Movie Collection</router-link>
+        </div>
       </div>
     </div>
     <Footer />
@@ -50,7 +54,7 @@ import { storeToRefs } from "pinia";
 import Footer from "../utilities/Footer.vue";
 import movieSectionNav from "../utilities/movieSectionNav.vue";
 import { useMovieStore } from "../../store/UseMovieStore";
-import { onMounted } from 'vue';
+import { onMounted } from "vue";
 export default {
   components: {
     movieSectionNav,
@@ -118,5 +122,28 @@ export default {
 .waitlist-text-btn:hover {
   background-color: #fff;
   color: #f03e3e;
+}
+
+.no-watchlist {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  gap: 1.3rem;
+  padding: 0.8rem 1rem;
+}
+
+.no-watchlist span {
+  font-size: 1.4rem;
+}
+
+.no-watchlist a {
+  background-color: #f03e3e;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 1.3rem;
+  padding: 1.4rem 1.7rem;
 }
 </style>
